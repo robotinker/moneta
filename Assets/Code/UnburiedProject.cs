@@ -32,28 +32,55 @@ public class UnburiedProject : MonoBehaviour
         imagePaths.AddRange(Directory.EnumerateFiles(path, "*.jpeg", SearchOption.AllDirectories));
         imagePaths.RemoveAll(s => Path.GetFileName(s).StartsWith("."));
 
+        var backupPaths = new List<string>();
+
         if (photoPresetCount < imagePaths.Count)
         {
             var pathsToUse = new List<string>();
             for (var i = 0; i < photoPresetCount; i++)
             {
-                var pathIndex = UnityEngine.Random.Range(0, imagePaths.Count);
-                pathsToUse.Add(imagePaths[pathIndex]);
-                imagePaths.RemoveAt(pathIndex);
+                pathsToUse.Add(PopRandom(imagePaths));
             }
+            backupPaths.AddRange(imagePaths);
             imagePaths = pathsToUse;
         }
 
         for (var i = 0; i < imagePaths.Count; i++)
         {
-            var newPhoto = Instantiate(PhotoPrefab, PhotoParent);
-            newPhoto.transform.position = PhotoParent.GetChild(i).position;
-            newPhoto.transform.rotation = PhotoParent.GetChild(i).rotation;
+            var parent = PhotoParent.GetChild(i);
+            var newPhoto = Instantiate(PhotoPrefab, parent);
+            newPhoto.transform.position = parent.position;
+            newPhoto.transform.rotation = parent.rotation;
 
-            var fileData = File.ReadAllBytes(imagePaths[i]);
             var texture = new Texture2D(2, 2);
-            texture.LoadImage(fileData);
-            newPhoto.GetComponent<Photo>().Init(texture);
+            var fileData = File.ReadAllBytes(imagePaths[i]);
+            var failed = false;
+            try
+            {
+                texture.LoadImage(fileData);
+            }
+            catch
+            {
+                failed = true;
+                while (backupPaths.Count > 0 && failed)
+                {
+                    var backup = PopRandom(backupPaths);
+                    try
+                    {
+                        fileData = File.ReadAllBytes(backup);
+                        texture.LoadImage(fileData);
+                        failed = false;
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+            }
+            if (!failed)
+            {
+                newPhoto.GetComponent<Photo>().Init(texture);
+            }
         }
     }
 
@@ -93,5 +120,13 @@ public class UnburiedProject : MonoBehaviour
         Destroy(gameObject);
 
         GameState.Instance.SetState(GameState.State.World);
+    }
+
+    public static string PopRandom(List<string> list)
+    {
+        var index = UnityEngine.Random.Range(0, list.Count);
+        var output = list[index];
+        list.RemoveAt(index);
+        return output;
     }
 }
