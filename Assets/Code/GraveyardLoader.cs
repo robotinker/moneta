@@ -1,5 +1,6 @@
 ﻿using SFB;
 using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
@@ -40,16 +41,29 @@ public class GraveyardLoader : MonoBehaviour
     public void ChooseGraveyard()
     {
         var paths = StandaloneFileBrowser.OpenFolderPanel("Choose Root Directory", "", false);
-        if (paths.Length > 0)
+        if (paths.Length > 0 && (!PlayerPrefs.HasKey(GraveyardPathKey) || paths[0] != PlayerPrefs.GetString(GraveyardPathKey)))
         {
             var directoryPath = paths[0];
-            if (!PlayerPrefs.HasKey(GraveyardPathKey) || directoryPath != PlayerPrefs.GetString(GraveyardPathKey))
-            {
-                PlayerPrefs.SetString(GraveyardPathKey, directoryPath);
-                Teardown();
-                Setup(directoryPath);
-            }
+
+            StartCoroutine(LoadGraveyardRoutine(paths[0]));
         }
+        else
+        {
+            EndInteraction();
+        }
+    }
+
+    IEnumerator LoadGraveyardRoutine(string path)
+    {
+        PlayerPrefs.SetString(GraveyardPathKey, path);
+        ConfirmationDialog.Instance.Hide();
+        LoadingMessage.Instance.Show();
+        yield return null;
+        yield return null;
+
+        Teardown();
+        Setup(path);
+        LoadingMessage.Instance.Hide();
         EndInteraction();
     }
 
@@ -62,7 +76,6 @@ public class GraveyardLoader : MonoBehaviour
     void Setup(string directory)
     {
         var directories = Directory.EnumerateDirectories(directory);
-        Debug.Log("Directories: " + string.Join(", ", directories));
 
         var i = 0;
         var gravePresetCount = GravePresetParent.childCount;
@@ -86,7 +99,7 @@ public class GraveyardLoader : MonoBehaviour
                 var newBurialPlot = Instantiate(UnburiedProjectPrefab, GraveParent);
                 newBurialPlot.transform.position = GravePresetParent.GetChild(i).position;
                 newBurialPlot.transform.rotation = GravePresetParent.GetChild(i).rotation;
-                newBurialPlot.GetComponent<UnburiedProject>().Init(path, Directory.GetCreationTime(path));
+                newBurialPlot.GetComponent<UnburiedProject>().Init(path);
             }
             i++;
         }
