@@ -9,10 +9,10 @@ public class Grave : MonoBehaviour
     public TextMeshPro DateText;
     public TextMeshPro DescriptionText;
 
-    public void Init(string title, DateTime date, string description)
+    public void Init(string title, string date, string description)
     {
         TitleText.text = title;
+        DateText.text = date;
         DescriptionText.text = description;
-        DateText.text = string.Format("({0})", date.ToString("MMM, yyyy"));
     }
 }

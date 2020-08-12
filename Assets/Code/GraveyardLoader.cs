@@ -7,6 +7,7 @@ using UnityRandom = UnityEngine.Random;
 public class GraveyardLoader : MonoBehaviour
 {
     public GameObject GravePrefab;
+    public GameObject UnburiedProjectPrefab;
     public Transform GraveParent;
 
     public static GraveyardLoader Instance;
@@ -66,9 +67,25 @@ public class GraveyardLoader : MonoBehaviour
 
         foreach (var path in directories)
         {
-            var newGrave = Instantiate(GravePrefab, GraveParent);
-            newGrave.transform.position = Vector3.zero + Vector3.right * UnityRandom.Range(-5f, 5f) + Vector3.forward * UnityRandom.Range(-5f, 5f);
-            newGrave.GetComponent<Grave>().Init(Path.GetFileName(path), Directory.GetCreationTime(path), "Lorem ipsum si cut dolor meus.");
+            var bonesFiles = Directory.GetFiles(path, "*.bones");
+            if (bonesFiles.Length > 0)
+            {
+                try
+                {
+                    var data = (BonesData)JsonUtility.FromJson(File.ReadAllText(bonesFiles[0]), typeof(BonesData));
+                    AddGrave(data);
+                }
+                catch
+                {
+                    Debug.LogErrorFormat("Failed to parse bones file: {0}", bonesFiles[0]);
+                }
+            }
+            else
+            {
+                var newBurialPlot = Instantiate(UnburiedProjectPrefab, GraveParent);
+                newBurialPlot.transform.position = Vector3.zero + Vector3.right * UnityRandom.Range(-5f, 5f) + Vector3.forward * UnityRandom.Range(-5f, 5f);
+                newBurialPlot.GetComponent<UnburiedProject>().Init(path, Directory.GetCreationTime(path));
+            }
         }
     }
 
@@ -76,7 +93,18 @@ public class GraveyardLoader : MonoBehaviour
     {
         for (var i = 0; i < GraveParent.childCount; i++)
         {
-            Destroy(GraveParent.GetChild(i));
+            Destroy(GraveParent.GetChild(i).gameObject);
         }
+    }
+
+    public void AddGrave(BonesData data)
+    {
+        var newGrave = Instantiate(GravePrefab);
+
+        newGrave.transform.position = data.Position;
+        newGrave.transform.rotation = Quaternion.Euler(data.Rotation);
+        newGrave.transform.SetParent(GraveParent);
+
+        newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description);
     }
 }

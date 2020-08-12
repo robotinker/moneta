@@ -2425,6 +2425,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GravePrefab: {fileID: 29578072867213560, guid: 9c56e55e8b3875a499dc1e4624d5acf5,
     type: 3}
+  UnburiedProjectPrefab: {fileID: 1645368976014094445, guid: aee419850f5b0c84485f20c0d9ffc4f0,
+    type: 3}
   GraveParent: {fileID: 203325247}
 --- !u!114 &2107248653
 MonoBehaviour:
