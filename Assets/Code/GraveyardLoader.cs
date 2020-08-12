@@ -31,8 +31,7 @@ public class GraveyardLoader : MonoBehaviour
 
     public void StartInteraction()
     {
-        GameState.Instance.CurrentState = GameState.State.UI;
-        Cursor.lockState = CursorLockMode.None;
+        GameState.Instance.SetState(GameState.State.UI);
 
         ConfirmationDialog.Instance.Show();
     }
@@ -56,8 +55,7 @@ public class GraveyardLoader : MonoBehaviour
     public void EndInteraction()
     {
         ConfirmationDialog.Instance.Hide();
-        Cursor.lockState = CursorLockMode.Locked;
-        GameState.Instance.CurrentState = GameState.State.World;
+        GameState.Instance.SetState(GameState.State.World);
     }
 
     void Setup(string directory)

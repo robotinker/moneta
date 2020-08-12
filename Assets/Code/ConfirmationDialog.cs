@@ -2,27 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConfirmationDialog : MonoBehaviour
+public class ConfirmationDialog : DialogPanelBase
 {
-    public GameObject DialogPanel;
-
-    public Action OnHide;
-
     public static ConfirmationDialog Instance;
 
-    private void Awake()
+    protected override void PostAwake()
     {
         Instance = this;
-    }
-
-    public void Show()
-    {
-        DialogPanel.SetActive(true);
-    }
-
-    public void Hide()
-    {
-        DialogPanel.SetActive(false);
-        OnHide?.Invoke();
     }
 }

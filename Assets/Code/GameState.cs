@@ -18,4 +18,19 @@ public class GameState : MonoBehaviour
     {
         Instance = this;
     }
+
+    public void SetState(State newState)
+    {
+        CurrentState = newState;
+
+        switch (newState)
+        {
+            case State.World:
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+            case State.UI:
+                Cursor.lockState = CursorLockMode.None;
+                break;
+        }
+    }
 }
