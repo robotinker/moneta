@@ -9,6 +9,7 @@ public class GraveyardLoader : MonoBehaviour
     public GameObject GravePrefab;
     public GameObject UnburiedProjectPrefab;
     public Transform GraveParent;
+    public Transform GravePresetParent;
 
     public static GraveyardLoader Instance;
 
@@ -63,6 +64,8 @@ public class GraveyardLoader : MonoBehaviour
         var directories = Directory.EnumerateDirectories(directory);
         Debug.Log("Directories: " + string.Join(", ", directories));
 
+        var i = 0;
+        var gravePresetCount = GravePresetParent.childCount;
         foreach (var path in directories)
         {
             var bonesFiles = Directory.GetFiles(path, "*.bones");
@@ -78,12 +81,14 @@ public class GraveyardLoader : MonoBehaviour
                     Debug.LogErrorFormat("Failed to parse bones file: {0}", bonesFiles[0]);
                 }
             }
-            else
+            else if (i < gravePresetCount)
             {
                 var newBurialPlot = Instantiate(UnburiedProjectPrefab, GraveParent);
-                newBurialPlot.transform.position = Vector3.zero + Vector3.right * UnityRandom.Range(-5f, 5f) + Vector3.forward * UnityRandom.Range(-5f, 5f);
+                newBurialPlot.transform.position = GravePresetParent.GetChild(i).position;
+                newBurialPlot.transform.rotation = GravePresetParent.GetChild(i).rotation;
                 newBurialPlot.GetComponent<UnburiedProject>().Init(path, Directory.GetCreationTime(path));
             }
+            i++;
         }
     }
 
