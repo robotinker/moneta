@@ -5270,22 +5270,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1266171338, guid: 9c56e55e8b3875a499dc1e4624d5acf5, type: 3}
-      propertyPath: m_BoundingSphereOverride.x
-      value: 3e-45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266171338, guid: 9c56e55e8b3875a499dc1e4624d5acf5, type: 3}
-      propertyPath: m_BoundingSphereOverride.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266171338, guid: 9c56e55e8b3875a499dc1e4624d5acf5, type: 3}
-      propertyPath: m_BoundingSphereOverride.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266171338, guid: 9c56e55e8b3875a499dc1e4624d5acf5, type: 3}
-      propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c56e55e8b3875a499dc1e4624d5acf5, type: 3}
 --- !u!4 &1251031300 stripped
