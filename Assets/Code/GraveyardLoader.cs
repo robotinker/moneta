@@ -1,9 +1,9 @@
 ﻿using SFB;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityRandom = UnityEngine.Random;
 
 public class GraveyardLoader : MonoBehaviour
 {
@@ -12,9 +12,12 @@ public class GraveyardLoader : MonoBehaviour
     public Transform GraveParent;
     public Transform GravePresetParent;
 
+    public List<Color> FlowerColors;
+
     public static GraveyardLoader Instance;
 
     const string GraveyardPathKey = "GraveyardPath";
+    string GraveyardPath = "";
 
     private void Awake()
     {
@@ -31,17 +34,18 @@ public class GraveyardLoader : MonoBehaviour
         }
     }
 
-    public void StartInteraction()
+    public void StartLoadInteraction()
     {
         GameState.Instance.SetState(GameState.State.UI);
 
+        ConfirmationDialog.Instance.Init("Visit another cemetary?", ChooseGraveyard, EndInteraction);
         ConfirmationDialog.Instance.Show();
     }
 
     public void ChooseGraveyard()
     {
         var paths = StandaloneFileBrowser.OpenFolderPanel("Choose Root Directory", "", false);
-        if (paths.Length > 0 && (!PlayerPrefs.HasKey(GraveyardPathKey) || paths[0] != PlayerPrefs.GetString(GraveyardPathKey)))
+        if (paths.Length > 0 && (paths[0] != GraveyardPath))
         {
             var directoryPath = paths[0];
 
@@ -75,6 +79,7 @@ public class GraveyardLoader : MonoBehaviour
 
     void Setup(string directory)
     {
+        GraveyardPath = directory;
         var directories = Directory.EnumerateDirectories(directory);
 
         var i = 0;
@@ -121,6 +126,33 @@ public class GraveyardLoader : MonoBehaviour
         newGrave.transform.rotation = Quaternion.Euler(data.Rotation);
         newGrave.transform.SetParent(GraveParent);
 
-        newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description);
+        newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description, data.FlowerColor);
+    }
+
+    public void StartClearBonesInteraction()
+    {
+        GameState.Instance.SetState(GameState.State.UI);
+
+        ConfirmationDialog.Instance.Init("Dig up all graves?", DestroyAllBonesFiles, EndInteraction);
+        ConfirmationDialog.Instance.Show();
+    }
+
+    public void DestroyAllBonesFiles()
+    {
+        if (string.IsNullOrEmpty(GraveyardPath))
+            return;
+
+        var directories = Directory.EnumerateDirectories(GraveyardPath);
+
+        foreach (var path in directories)
+        {
+            var bonesFiles = Directory.GetFiles(path, "*.bones");
+            foreach (var file in bonesFiles)
+            {
+                File.Delete(file);
+            }
+        }
+
+        StartCoroutine(LoadGraveyardRoutine(GraveyardPath));
     }
 }

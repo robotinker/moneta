@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29578072867179736}
   - component: {fileID: 5200383176841782657}
+  - component: {fileID: 1976205694}
   m_Layer: 0
   m_Name: grave
   m_TagString: Untagged
@@ -123,6 +124,7 @@ Transform:
   - {fileID: 1266171337}
   - {fileID: 1450162767}
   - {fileID: 1874052890057517076}
+  - {fileID: 6720378803109005126}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,6 +143,24 @@ MonoBehaviour:
   TitleText: {fileID: 6711999834401222588}
   DateText: {fileID: 3386176882338024034}
   DescriptionText: {fileID: 5754717903013363431}
+  FlowerRenderer: {fileID: 6720378803107235244}
+--- !u!114 &1976205694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29578072867213560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7124c33e637944e8de1c05d9cb366f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &29578072867213562
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +967,92 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!1001 &554627231436776880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 29578072867179736}
+    m_Modifications:
+    - target: {fileID: 6553294279327563478, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.065
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.324
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279325360156, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d41f89e8aedd15a458dbdd9afb5b8ac3, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9524dc863088d80438b3bec1875e2533, type: 3}
+--- !u!4 &6720378803109005126 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6553294279327654646, guid: 9524dc863088d80438b3bec1875e2533,
+    type: 3}
+  m_PrefabInstance: {fileID: 554627231436776880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6720378803107235244 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6553294279325360156, guid: 9524dc863088d80438b3bec1875e2533,
+    type: 3}
+  m_PrefabInstance: {fileID: 554627231436776880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7679885703049875624
 PrefabInstance:
   m_ObjectHideFlags: 0

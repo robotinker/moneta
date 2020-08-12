@@ -1856,7 +1856,7 @@ RectTransform:
   - {fileID: 227347256}
   - {fileID: 860385047}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1876,6 +1876,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 1913610426}
+  Prompt: {fileID: 1443375425}
+  ConfirmLabel: {fileID: 71747332}
+  CancelLabel: {fileID: 1662323697}
 --- !u!114 &245820234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2495,8 +2498,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2107248652}
-        m_MethodName: ChooseGraveyard
+      - m_Target: {fileID: 245820233}
+        m_MethodName: HandleConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4967,6 +4970,139 @@ Transform:
   m_Father: {fileID: 1982790997}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &1159219676
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_Name
+      value: WhiteObelisk
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.113
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.477
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 36d0d0620e58d5a449b982250bd7f6ac, type: 2}
+    - target: {fileID: 2300000, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.45
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
+--- !u!1 &1159219677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 70ec2981ed0356a43a979b204f2f73d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1159219676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1159219678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159219677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7375bbb1d3473214d97498c05bb39a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1159219679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159219677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7124c33e637944e8de1c05d9cb366f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2107248652}
+        m_MethodName: StartClearBonesInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!64 &1159219680
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159219677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 70ec2981ed0356a43a979b204f2f73d2, type: 3}
 --- !u!1001 &1162035732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5945,7 +6081,7 @@ Transform:
   - {fileID: 226534374}
   - {fileID: 1070416881}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1462686544
 PrefabInstance:
@@ -6384,7 +6520,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1531065268
 GameObject:
@@ -6634,8 +6770,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2107248652}
-        m_MethodName: EndInteraction
+      - m_Target: {fileID: 245820233}
+        m_MethodName: HandleCancel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7628,7 +7764,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2107248652}
-        m_MethodName: StartInteraction
+        m_MethodName: StartLoadInteraction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8764,6 +8900,12 @@ MonoBehaviour:
     type: 3}
   GraveParent: {fileID: 203325247}
   GravePresetParent: {fileID: 1982790997}
+  FlowerColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.6833334, b: 1, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.6117803, b: 0, a: 1}
+  - {r: 0.9315582, g: 0.45499998, b: 1, a: 1}
 --- !u!114 &2107248653
 MonoBehaviour:
   m_ObjectHideFlags: 0

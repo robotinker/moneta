@@ -6,6 +6,6 @@ public class GraveyardLoaderInteraction : MonoBehaviour
 {
     public void StartInteraction()
     {
-        GraveyardLoader.Instance.StartInteraction();
+        GraveyardLoader.Instance.StartLoadInteraction();
     }
 }

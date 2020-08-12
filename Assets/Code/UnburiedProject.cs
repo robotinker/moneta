@@ -18,7 +18,7 @@ public class UnburiedProject : MonoBehaviour
     {
         ProjectPath = path;
 
-        Grave.Init(Path.GetFileName(path), string.Format("({0} - ???)", Directory.GetCreationTime(ProjectPath).ToString("MMM, yyyy")), "");
+        Grave.Init(Path.GetFileName(path), string.Format("({0} - ???)", Directory.GetCreationTime(ProjectPath).ToString("MMM, yyyy")), "", Color.white);
 
         LoadPhotos(path);
         LoadAudio(path);
@@ -39,7 +39,7 @@ public class UnburiedProject : MonoBehaviour
             var pathsToUse = new List<string>();
             for (var i = 0; i < photoPresetCount; i++)
             {
-                pathsToUse.Add(PopRandom(imagePaths));
+                pathsToUse.Add(Utils.PopRandom(imagePaths));
             }
             backupPaths.AddRange(imagePaths);
             imagePaths = pathsToUse;
@@ -64,7 +64,7 @@ public class UnburiedProject : MonoBehaviour
                 failed = true;
                 while (backupPaths.Count > 0 && failed)
                 {
-                    var backup = PopRandom(backupPaths);
+                    var backup = Utils.PopRandom(backupPaths);
                     try
                     {
                         fileData = File.ReadAllBytes(backup);
@@ -114,19 +114,12 @@ public class UnburiedProject : MonoBehaviour
     void SetDescription(string description)
     {
         Data.Description = description;
+        Data.FlowerColor = Utils.GetRandom(GraveyardLoader.Instance.FlowerColors);
         File.WriteAllText(Path.Combine(ProjectPath, Path.GetFileName(ProjectPath) + ".bones"), JsonUtility.ToJson(Data, true));
 
         GraveyardLoader.Instance.AddGrave(Data);
         Destroy(gameObject);
 
         GameState.Instance.SetState(GameState.State.World);
-    }
-
-    public static string PopRandom(List<string> list)
-    {
-        var index = UnityEngine.Random.Range(0, list.Count);
-        var output = list[index];
-        list.RemoveAt(index);
-        return output;
     }
 }
