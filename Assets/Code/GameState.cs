@@ -10,7 +10,7 @@ public class GameState : MonoBehaviour
         UI
     }
 
-    public State CurrentState = State.World;
+    public State CurrentState { get; private set; } = State.World;
 
     public static GameState Instance;
 

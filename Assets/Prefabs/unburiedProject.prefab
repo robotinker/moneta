@@ -989,6 +989,7 @@ GameObject:
   - component: {fileID: 9012636001154723869}
   - component: {fileID: 9012636001959470941}
   - component: {fileID: 6545596223542558822}
+  - component: {fileID: 1582393071610765574}
   m_Layer: 0
   m_Name: Mesh1_Trunk_Model
   m_TagString: Untagged
@@ -1090,7 +1091,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5739040073292871106}
-        m_MethodName: SetTitle
+        m_MethodName: StartBurialInteraction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1102,6 +1103,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!65 &1582393071610765574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012636001152790237}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5054468, y: 0.8300001, z: 6.6023507}
+  m_Center: {x: -0.38336214, y: 0.41500005, z: 2.4974854}
 --- !u!1 &9012636001152790239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1165,7 @@ MonoBehaviour:
   TitleText: {fileID: 2332747926424048027}
   DateText: {fileID: 6018032066700653637}
   DescriptionText: {fileID: 3649772609887715520}
+  FlowerRenderer: {fileID: 0}
 --- !u!1 &9035592459787114346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,15 +1416,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75b4b28c9ac04a54385de9ad2fa50427, type: 3}
---- !u!4 &9041615793020748904 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7679885702205287143, guid: 75b4b28c9ac04a54385de9ad2fa50427,
-    type: 3}
-  m_PrefabInstance: {fileID: 1724362934674288271}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9041615793021245514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7679885702205257413, guid: 75b4b28c9ac04a54385de9ad2fa50427,
+    type: 3}
+  m_PrefabInstance: {fileID: 1724362934674288271}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9041615793020748904 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7679885702205287143, guid: 75b4b28c9ac04a54385de9ad2fa50427,
     type: 3}
   m_PrefabInstance: {fileID: 1724362934674288271}
   m_PrefabAsset: {fileID: 0}

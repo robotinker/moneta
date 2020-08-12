@@ -89,9 +89,15 @@ public class UnburiedProject : MonoBehaviour
 
     }
 
-    public void SetTitle()
+    public void StartBurialInteraction()
     {
         GameState.Instance.SetState(GameState.State.UI);
+        ConfirmationDialog.Instance.Init("Bury this project?", SetTitle, EndInteraction);
+        ConfirmationDialog.Instance.Show();
+    }
+
+    public void SetTitle()
+    {
         Data = new BonesData
         {
             Title = Path.GetFileName(ProjectPath),
@@ -120,6 +126,11 @@ public class UnburiedProject : MonoBehaviour
         GraveyardLoader.Instance.AddGrave(Data);
         Destroy(gameObject);
 
+        EndInteraction();
+    }
+
+    void EndInteraction()
+    {
         GameState.Instance.SetState(GameState.State.World);
     }
 }

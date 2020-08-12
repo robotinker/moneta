@@ -35,11 +35,13 @@ public class ConfirmationDialog : DialogPanelBase
 
     public void HandleConfirm()
     {
+        Hide();
         OnConfirm?.Invoke();
     }
 
     public void HandleCancel()
     {
+        Hide();
         OnCancel?.Invoke();
     }
 }

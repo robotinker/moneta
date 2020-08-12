@@ -26,8 +26,6 @@ public class GraveyardLoader : MonoBehaviour
 
     private void Start()
     {
-        ConfirmationDialog.Instance.Hide();
-
         if (PlayerPrefs.HasKey(GraveyardPathKey))
         {
             Setup(PlayerPrefs.GetString(GraveyardPathKey));
@@ -60,7 +58,6 @@ public class GraveyardLoader : MonoBehaviour
     IEnumerator LoadGraveyardRoutine(string path)
     {
         PlayerPrefs.SetString(GraveyardPathKey, path);
-        ConfirmationDialog.Instance.Hide();
         LoadingMessage.Instance.Show();
         yield return null;
         yield return null;
@@ -73,7 +70,6 @@ public class GraveyardLoader : MonoBehaviour
 
     public void EndInteraction()
     {
-        ConfirmationDialog.Instance.Hide();
         GameState.Instance.SetState(GameState.State.World);
     }
 
