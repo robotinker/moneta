@@ -90,9 +90,9 @@ public class GraveyardLoader : MonoBehaviour
                     var data = (BonesData)JsonUtility.FromJson(File.ReadAllText(bonesFiles[0]), typeof(BonesData));
                     AddGrave(data, path);
                 }
-                catch
+                catch (Exception e)
                 {
-                    Debug.LogErrorFormat("Failed to parse bones file: {0}", bonesFiles[0]);
+                    Debug.LogErrorFormat("Failed initialize grave with file: {0}... {1}", bonesFiles[0], e.Message);
                 }
             }
             else if (i < gravePresetCount)
