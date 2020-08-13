@@ -12,6 +12,5 @@ public class Photo : MonoBehaviour
 
         var maxDimension = Mathf.Max(texture.width, texture.height);
         Face.transform.localScale = new Vector3(texture.width / (float)maxDimension, texture.height / (float)maxDimension, 1f) * Face.transform.localScale.x;
-        Debug.LogFormat("Width: {0}, Height: {1}, MaxDim: {2}", texture.width, texture.height, maxDimension);
     }
 }

@@ -88,7 +88,7 @@ public class GraveyardLoader : MonoBehaviour
                 try
                 {
                     var data = (BonesData)JsonUtility.FromJson(File.ReadAllText(bonesFiles[0]), typeof(BonesData));
-                    AddGrave(data);
+                    AddGrave(data, path);
                 }
                 catch
                 {
@@ -114,7 +114,7 @@ public class GraveyardLoader : MonoBehaviour
         }
     }
 
-    public void AddGrave(BonesData data)
+    public void AddGrave(BonesData data, string path)
     {
         var newGrave = Instantiate(GravePrefab);
 
@@ -122,7 +122,8 @@ public class GraveyardLoader : MonoBehaviour
         newGrave.transform.rotation = Quaternion.Euler(data.Rotation);
         newGrave.transform.SetParent(GraveParent);
 
-        newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description, data.FlowerColor);
+        newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description);
+        newGrave.GetComponent<BuriedProject>().Init(data.FlowerColor, path);
     }
 
     public void StartClearBonesInteraction()

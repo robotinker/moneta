@@ -8,16 +8,11 @@ public class Grave : MonoBehaviour
     public TextMeshPro TitleText;
     public TextMeshPro DateText;
     public TextMeshPro DescriptionText;
-    public MeshRenderer FlowerRenderer;
 
-    public void Init(string title, string date, string description, Color flowerColor)
+    public void Init(string title, string date, string description)
     {
         TitleText.text = title;
         DateText.text = date;
         DescriptionText.text = description;
-        if (FlowerRenderer != null)
-        {
-            FlowerRenderer.materials[1].color = flowerColor;
-        }
     }
 }

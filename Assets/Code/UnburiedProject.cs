@@ -18,75 +18,23 @@ public class UnburiedProject : MonoBehaviour
     {
         ProjectPath = path;
 
-        Grave.Init(Path.GetFileName(path), string.Format("({0} - ???)", Directory.GetCreationTime(ProjectPath).ToString("MMM, yyyy")), "", Color.white);
+        Grave.Init(Path.GetFileName(path), string.Format("({0} - ???)", Directory.GetCreationTime(ProjectPath).ToString("MMM, yyyy")), "");
 
         LoadPhotos(path);
-        LoadAudio(path);
     }
 
     void LoadPhotos(string path)
     {
-        var photoPresetCount = PhotoParent.childCount;
-        var imagePaths = Directory.EnumerateFiles(path, "*.png", SearchOption.AllDirectories).ToList();
-        imagePaths.AddRange(Directory.EnumerateFiles(path, "*.jpg", SearchOption.AllDirectories));
-        imagePaths.AddRange(Directory.EnumerateFiles(path, "*.jpeg", SearchOption.AllDirectories));
-        imagePaths.RemoveAll(s => Path.GetFileName(s).StartsWith("."));
-
-        var backupPaths = new List<string>();
-
-        if (photoPresetCount < imagePaths.Count)
-        {
-            var pathsToUse = new List<string>();
-            for (var i = 0; i < photoPresetCount; i++)
-            {
-                pathsToUse.Add(Utils.PopRandom(imagePaths));
-            }
-            backupPaths.AddRange(imagePaths);
-            imagePaths = pathsToUse;
-        }
-
-        for (var i = 0; i < imagePaths.Count; i++)
+        var textures = Utils.GetTextures(path, PhotoParent.childCount);
+        
+        for (var i = 0; i < textures.Count; i++)
         {
             var parent = PhotoParent.GetChild(i);
             var newPhoto = Instantiate(PhotoPrefab, parent);
             newPhoto.transform.position = parent.position;
             newPhoto.transform.rotation = parent.rotation;
-
-            var texture = new Texture2D(2, 2);
-            var fileData = File.ReadAllBytes(imagePaths[i]);
-            var failed = false;
-            try
-            {
-                texture.LoadImage(fileData);
-            }
-            catch
-            {
-                failed = true;
-                while (backupPaths.Count > 0 && failed)
-                {
-                    var backup = Utils.PopRandom(backupPaths);
-                    try
-                    {
-                        fileData = File.ReadAllBytes(backup);
-                        texture.LoadImage(fileData);
-                        failed = false;
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                }
-            }
-            if (!failed)
-            {
-                newPhoto.GetComponent<Photo>().Init(texture);
-            }
+            newPhoto.GetComponent<Photo>().Init(textures[i]);
         }
-    }
-
-    void LoadAudio(string path)
-    {
-
     }
 
     public void StartBurialInteraction()
@@ -123,7 +71,7 @@ public class UnburiedProject : MonoBehaviour
         Data.FlowerColor = Utils.GetRandom(GraveyardLoader.Instance.FlowerColors);
         File.WriteAllText(Path.Combine(ProjectPath, Path.GetFileName(ProjectPath) + ".bones"), JsonUtility.ToJson(Data, true));
 
-        GraveyardLoader.Instance.AddGrave(Data);
+        GraveyardLoader.Instance.AddGrave(Data, ProjectPath);
         Destroy(gameObject);
 
         EndInteraction();
