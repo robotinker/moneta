@@ -58,9 +58,7 @@ public class UnburiedProject : MonoBehaviour
         {
             Title = Path.GetFileName(ProjectPath),
             Date = string.Format("({0} - {1})", Directory.GetCreationTime(ProjectPath).ToString("MMM, yyyy"), DateTime.Now.ToString("MMM, yyyy")),
-            Description = "Lorem Ipsum",
-            Position = transform.position,
-            Rotation = transform.eulerAngles
+            Description = "Lorem Ipsum"
         };
         TextDialog.Instance.Init("Project Name", SetTitle);
         TextDialog.Instance.Show();
@@ -91,7 +89,7 @@ public class UnburiedProject : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
         Instantiate(BurialEffectPrefab, BurialEffectLocation.position, BurialEffectLocation.rotation);
         yield return new WaitForSeconds(0.5f);
-        GraveyardLoader.Instance.AddGrave(Data, ProjectPath);
+        GraveyardLoader.Instance.AddGrave(Data, ProjectPath, transform.position, transform.rotation);
         Destroy(gameObject);
 
     }

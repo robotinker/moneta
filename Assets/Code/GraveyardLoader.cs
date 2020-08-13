@@ -82,13 +82,18 @@ public class GraveyardLoader : MonoBehaviour
         var gravePresetCount = GravePresetParent.childCount;
         foreach (var path in directories)
         {
+            if (i >= gravePresetCount)
+                break;
+
+            var preset = GravePresetParent.GetChild(i);
+
             var bonesFiles = Directory.GetFiles(path, "*.bones");
             if (bonesFiles.Length > 0)
             {
                 try
                 {
                     var data = (BonesData)JsonUtility.FromJson(File.ReadAllText(bonesFiles[0]), typeof(BonesData));
-                    AddGrave(data, path);
+                    AddGrave(data, path, preset.position, preset.rotation);
                 }
                 catch (Exception e)
                 {
@@ -98,8 +103,8 @@ public class GraveyardLoader : MonoBehaviour
             else if (i < gravePresetCount)
             {
                 var newBurialPlot = Instantiate(UnburiedProjectPrefab, GraveParent);
-                newBurialPlot.transform.position = GravePresetParent.GetChild(i).position;
-                newBurialPlot.transform.rotation = GravePresetParent.GetChild(i).rotation;
+                newBurialPlot.transform.position = preset.position;
+                newBurialPlot.transform.rotation = preset.rotation;
                 newBurialPlot.GetComponent<UnburiedProject>().Init(path);
             }
             i++;
@@ -114,12 +119,12 @@ public class GraveyardLoader : MonoBehaviour
         }
     }
 
-    public void AddGrave(BonesData data, string path)
+    public void AddGrave(BonesData data, string path, Vector3 position, Quaternion rotation)
     {
         var newGrave = Instantiate(GravePrefab);
 
-        newGrave.transform.position = data.Position;
-        newGrave.transform.rotation = Quaternion.Euler(data.Rotation);
+        newGrave.transform.position = position;
+        newGrave.transform.rotation = rotation;
         newGrave.transform.SetParent(GraveParent);
 
         newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description);
