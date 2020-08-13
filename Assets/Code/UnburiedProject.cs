@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFB;
+using System;
 using System.Collections;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,13 @@ public class UnburiedProject : MonoBehaviour
 
         Grave.Init(Path.GetFileName(path), string.Format("({0} - ???)", Directory.GetCreationTime(ProjectPath).ToString("MMM, yyyy")), "");
 
+        ClearPhotos();
         LoadPhotos(path);
+    }
+
+    void ClearPhotos()
+    {
+        Utils.DestroyChildrenWithComponent<Photo>(PhotoParent);
     }
 
     void LoadPhotos(string path)
@@ -49,7 +56,6 @@ public class UnburiedProject : MonoBehaviour
 
         GameState.Instance.SetState(GameState.State.UI);
         ConfirmationDialog.Instance.Init("Bury this project?", SetTitle, EndInteraction);
-        ConfirmationDialog.Instance.Show();
     }
 
     public void SetTitle()
@@ -61,20 +67,41 @@ public class UnburiedProject : MonoBehaviour
             Description = "Lorem Ipsum"
         };
         TextDialog.Instance.Init("Project Name", SetTitle);
-        TextDialog.Instance.Show();
     }
 
     void SetTitle(string title)
     {
         Data.Title = title;
         TextDialog.Instance.Init("Would you like to say anything about this project?", SetDescription);
-        TextDialog.Instance.Show();
     }
 
     void SetDescription(string description)
     {
         Data.Description = description;
         Data.FlowerColor = Utils.GetRandom(GraveyardLoader.Instance.FlowerColors);
+        ConfirmationDialog.Instance.Init("Is there a photo you'd like to keep?",
+            () =>
+            {
+                var paths = StandaloneFileBrowser.OpenFilePanel("Choose A Photo", ProjectPath, new[] {new ExtensionFilter("images", "jpg", "jpeg", "png")}, false);
+                if (paths.Length > 0)
+                {
+                    SetPhoto(paths[0]);
+                }
+                else
+                {
+                    SetPhoto("");
+                }
+            },
+            () =>
+            {
+                SetPhoto("");
+            }, "Yes", "No");
+    }
+
+    void SetPhoto(string photoPath)
+    {
+        Data.Photo = photoPath;
+
         File.WriteAllText(Path.Combine(ProjectPath, Path.GetFileName(ProjectPath) + ".bones"), JsonUtility.ToJson(Data, true));
 
         StartCoroutine(BurialRoutine());

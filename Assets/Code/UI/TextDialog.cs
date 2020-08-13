@@ -22,6 +22,7 @@ public class TextDialog : DialogPanelBase
         Prompt.text = prompt;
         TextInput.text = "";
         OnConfirmed = onConfirmed;
+        Show();
     }
 
     public void Confirm()

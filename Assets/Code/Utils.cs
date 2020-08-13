@@ -129,4 +129,12 @@ public class Utils
 
         callback?.Invoke(output);
     }
+
+    public static void DestroyChildrenWithComponent<T>(Transform parent) where T : MonoBehaviour
+    {
+        foreach (var target in parent.GetComponentsInChildren<T>())
+        {
+            UnityEngine.Object.Destroy(target.gameObject);
+        }
+    }
 }

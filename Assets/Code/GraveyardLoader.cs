@@ -10,7 +10,6 @@ public class GraveyardLoader : MonoBehaviour
     public GameObject GravePrefab;
     public GameObject UnburiedProjectPrefab;
     public Transform GraveParent;
-    public Transform GravePresetParent;
 
     public List<Color> FlowerColors;
 
@@ -24,8 +23,9 @@ public class GraveyardLoader : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return Teardown();
         if (PlayerPrefs.HasKey(GraveyardPathKey))
         {
             Setup(PlayerPrefs.GetString(GraveyardPathKey));
@@ -37,12 +37,11 @@ public class GraveyardLoader : MonoBehaviour
         GameState.Instance.SetState(GameState.State.UI);
 
         ConfirmationDialog.Instance.Init("Visit another cemetary?", ChooseGraveyard, EndInteraction);
-        ConfirmationDialog.Instance.Show();
     }
 
     public void ChooseGraveyard()
     {
-        var paths = StandaloneFileBrowser.OpenFolderPanel("Choose Root Directory", "", false);
+        var paths = StandaloneFileBrowser.OpenFolderPanel("Choose An Archive", "", false);
         if (paths.Length > 0 && (paths[0] != GraveyardPath))
         {
             var directoryPath = paths[0];
@@ -62,7 +61,7 @@ public class GraveyardLoader : MonoBehaviour
         yield return null;
         yield return null;
 
-        Teardown();
+        yield return Teardown();
         Setup(path);
         LoadingMessage.Instance.Hide();
         EndInteraction();
@@ -79,13 +78,13 @@ public class GraveyardLoader : MonoBehaviour
         var directories = Directory.EnumerateDirectories(directory);
 
         var i = 0;
-        var gravePresetCount = GravePresetParent.childCount;
+        var gravePresetCount = GraveParent.childCount;
         foreach (var path in directories)
         {
             if (i >= gravePresetCount)
                 break;
 
-            var preset = GravePresetParent.GetChild(i);
+            var preset = GraveParent.GetChild(i);
 
             var bonesFiles = Directory.GetFiles(path, "*.bones");
             if (bonesFiles.Length > 0)
@@ -111,12 +110,11 @@ public class GraveyardLoader : MonoBehaviour
         }
     }
 
-    void Teardown()
+    IEnumerator Teardown()
     {
-        for (var i = 0; i < GraveParent.childCount; i++)
-        {
-            Destroy(GraveParent.GetChild(i).gameObject);
-        }
+        Utils.DestroyChildrenWithComponent<Grave>(GraveParent);
+        Utils.DestroyChildrenWithComponent<UnburiedProject>(GraveParent);
+        yield return new WaitForEndOfFrame();
     }
 
     public void AddGrave(BonesData data, string path, Vector3 position, Quaternion rotation)
@@ -128,7 +126,7 @@ public class GraveyardLoader : MonoBehaviour
         newGrave.transform.SetParent(GraveParent);
 
         newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description);
-        newGrave.GetComponent<BuriedProject>().Init(data.FlowerColor, path);
+        newGrave.GetComponent<BuriedProject>().Init(path, data.FlowerColor, data.Photo);
     }
 
     public void StartClearBonesInteraction()
@@ -136,7 +134,6 @@ public class GraveyardLoader : MonoBehaviour
         GameState.Instance.SetState(GameState.State.UI);
 
         ConfirmationDialog.Instance.Init("Dig up all graves?", DestroyAllBonesFiles, EndInteraction);
-        ConfirmationDialog.Instance.Show();
     }
 
     public void DestroyAllBonesFiles()

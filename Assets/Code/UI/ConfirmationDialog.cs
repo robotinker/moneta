@@ -21,6 +21,7 @@ public class ConfirmationDialog : DialogPanelBase
         CancelLabel.text = cancelLabel;
         OnConfirm = onConfirm;
         OnCancel = onCancel;
+        Show();
     }
 
     protected override void PostAwake()

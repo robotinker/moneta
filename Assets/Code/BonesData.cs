@@ -8,4 +8,5 @@ public class BonesData
     public string Date;
     public string Description;
     public Color FlowerColor;
+    public string Photo;
 }

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public class BuriedProject : MonoBehaviour
 {
+    public GameObject PhotoPrefab;
+    public Transform PhotoParent;
     public Animator FlowerAnimator;
     public MeshRenderer FlowerRenderer;
     public AudioSource MusicEmitter;
@@ -16,10 +19,53 @@ public class BuriedProject : MonoBehaviour
     List<AudioClip> SFX = new List<AudioClip>();
     List<Texture2D> Images = new List<Texture2D>();
 
-    bool IsPlaying;
+    float StartingMusicVolume;
+    Coroutine FadeRoutine;
 
-    public void Init(Color flowerColor, string path)
+    public bool IsPlaying { get; private set; }
+
+    public static Action<BuriedProject> OnStartSolo;
+
+    private void Awake()
     {
+        StartingMusicVolume = MusicEmitter.volume;
+        OnStartSolo += HandleSoloStarted;
+    }
+
+    private void OnDestroy()
+    {
+        OnStartSolo -= HandleSoloStarted;
+    }
+
+    void HandleSoloStarted(BuriedProject target)
+    {
+        if (IsPlaying && target != this)
+        {
+            TogglePlaying();
+        }
+    }
+
+    public void Init(string path, Color flowerColor, string photoPath)
+    {
+        Utils.DestroyChildrenWithComponent<Photo>(PhotoParent);
+        if (!string.IsNullOrEmpty(photoPath))
+        {
+            var newPhoto = Instantiate(PhotoPrefab, PhotoParent);
+            newPhoto.transform.position = PhotoParent.position;
+            newPhoto.transform.rotation = PhotoParent.rotation;
+            var texture = new Texture2D(2, 2);
+            try
+            {
+                var fileData = File.ReadAllBytes(photoPath);
+                texture.LoadImage(fileData);
+                newPhoto.GetComponent<Photo>().Init(texture);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+        }
+
         PSRenderer = ParticleSystem.GetComponent<ParticleSystemRenderer>();
 
         if (FlowerRenderer != null)
@@ -55,11 +101,17 @@ public class BuriedProject : MonoBehaviour
 
         if (IsPlaying)
         {
-            MusicEmitter.Stop();
+            FadeRoutine = StartCoroutine(FadeOutMusic());
             IsPlaying = false;
         }
         else
         {
+            if (FadeRoutine != null)
+            {
+                StopCoroutine(FadeRoutine);
+                MusicEmitter.volume = StartingMusicVolume;
+                FadeRoutine = null;
+            }
             if (Music.Count > 0)
             {
                 MusicEmitter.clip = Utils.GetRandom(Music);
@@ -67,15 +119,31 @@ public class BuriedProject : MonoBehaviour
             }
             StartCoroutine(SFXLoop());
             IsPlaying = true;
+            OnStartSolo?.Invoke(this);
         }
         FlowerAnimator.SetBool("Playing", IsPlaying);
+    }
+
+    IEnumerator FadeOutMusic()
+    {
+        var fadeTime = 1f;
+        var timer = 0f;
+        while (timer < fadeTime)
+        {
+            timer += Time.deltaTime;
+            MusicEmitter.volume = StartingMusicVolume * (1f - timer / fadeTime);
+            yield return null;
+        }
+        MusicEmitter.Stop();
+        MusicEmitter.volume = StartingMusicVolume;
+        FadeRoutine = null;
     }
 
     IEnumerator SFXLoop()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1f, 5f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 5f));
 
             if (Images.Count > 0 && !ParticleSystem.isPlaying)
             {
