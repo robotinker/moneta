@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -6,13 +7,17 @@ using UnityEngine;
 
 public class UnburiedProject : MonoBehaviour
 {
+    public Transform BurialEffectLocation;
+    public GameObject BurialEffectPrefab;
     public GameObject PhotoPrefab;
     public Grave Grave;
 
     public Transform PhotoParent;
+    public Animator BurialAnimator;
 
     string ProjectPath;
     BonesData Data;
+    bool IsBurying;
 
     public void Init(string path)
     {
@@ -39,6 +44,9 @@ public class UnburiedProject : MonoBehaviour
 
     public void StartBurialInteraction()
     {
+        if (IsBurying)
+            return;
+
         GameState.Instance.SetState(GameState.State.UI);
         ConfirmationDialog.Instance.Init("Bury this project?", SetTitle, EndInteraction);
         ConfirmationDialog.Instance.Show();
@@ -71,10 +79,21 @@ public class UnburiedProject : MonoBehaviour
         Data.FlowerColor = Utils.GetRandom(GraveyardLoader.Instance.FlowerColors);
         File.WriteAllText(Path.Combine(ProjectPath, Path.GetFileName(ProjectPath) + ".bones"), JsonUtility.ToJson(Data, true));
 
+        StartCoroutine(BurialRoutine());
+    }
+
+    IEnumerator BurialRoutine()
+    {
+        BurialAnimator.SetTrigger("Bury");
+        EndInteraction();
+        IsBurying = true;
+
+        yield return new WaitForSeconds(3.5f);
+        Instantiate(BurialEffectPrefab, BurialEffectLocation.position, BurialEffectLocation.rotation);
+        yield return new WaitForSeconds(0.5f);
         GraveyardLoader.Instance.AddGrave(Data, ProjectPath);
         Destroy(gameObject);
 
-        EndInteraction();
     }
 
     void EndInteraction()
