@@ -24,7 +24,7 @@ public class ConfirmationDialog : DialogPanelBase
         Show();
     }
 
-    protected override void PostAwake()
+    void Awake()
     {
         Instance = this;
     }

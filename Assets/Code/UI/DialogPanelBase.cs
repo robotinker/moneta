@@ -6,20 +6,15 @@ public class DialogPanelBase : MonoBehaviour
 {
     public GameObject Panel;
 
-    protected void Awake()
+    private void Start()
     {
         Hide();
-        PostAwake();
-    }
-
-    protected virtual void PostAwake()
-    {
-
     }
 
     public void Show()
     {
         Panel.SetActive(true);
+        GameState.Instance.SetState(GameState.State.UI);
         PostShow();
     }
 
@@ -31,6 +26,7 @@ public class DialogPanelBase : MonoBehaviour
     public void Hide()
     {
         PreHide();
+        GameState.Instance.SetState(GameState.State.World);
         Panel.SetActive(false);
     }
 

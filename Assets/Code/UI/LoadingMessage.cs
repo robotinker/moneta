@@ -6,7 +6,7 @@ public class LoadingMessage : DialogPanelBase
 {
     public static LoadingMessage Instance;
 
-    protected override void PostAwake()
+    void Awake()
     {
         Instance = this;
     }

@@ -34,9 +34,7 @@ public class GraveyardLoader : MonoBehaviour
 
     public void StartLoadInteraction()
     {
-        GameState.Instance.SetState(GameState.State.UI);
-
-        ConfirmationDialog.Instance.Init("Visit another cemetary?", ChooseGraveyard, EndInteraction);
+        ConfirmationDialog.Instance.Init("Visit another cemetary?", ChooseGraveyard, null);
     }
 
     public void ChooseGraveyard()
@@ -47,10 +45,6 @@ public class GraveyardLoader : MonoBehaviour
             var directoryPath = paths[0];
 
             StartCoroutine(LoadGraveyardRoutine(paths[0]));
-        }
-        else
-        {
-            EndInteraction();
         }
     }
 
@@ -64,12 +58,6 @@ public class GraveyardLoader : MonoBehaviour
         yield return Teardown();
         Setup(path);
         LoadingMessage.Instance.Hide();
-        EndInteraction();
-    }
-
-    public void EndInteraction()
-    {
-        GameState.Instance.SetState(GameState.State.World);
     }
 
     void Setup(string directory)
@@ -133,7 +121,7 @@ public class GraveyardLoader : MonoBehaviour
     {
         GameState.Instance.SetState(GameState.State.UI);
 
-        ConfirmationDialog.Instance.Init("Dig up all graves?", DestroyAllBonesFiles, EndInteraction);
+        ConfirmationDialog.Instance.Init("Dig up all graves?", DestroyAllBonesFiles, null);
     }
 
     public void DestroyAllBonesFiles()

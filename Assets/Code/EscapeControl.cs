@@ -9,6 +9,7 @@ public class EscapeControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            ConfirmationDialog.Instance.Init("Exit?", () => Application.Quit(), () => ConfirmationDialog.Instance.Hide());
             Application.Quit();
         }
     }

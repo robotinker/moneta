@@ -59,8 +59,7 @@ public class UnburiedProject : MonoBehaviour
         if (IsBurying)
             return;
 
-        GameState.Instance.SetState(GameState.State.UI);
-        ConfirmationDialog.Instance.Init("Bury this project?", SetTitle, EndInteraction);
+        ConfirmationDialog.Instance.Init("Bury this project?", SetTitle, null);
     }
 
     public void SetTitle()
@@ -115,7 +114,6 @@ public class UnburiedProject : MonoBehaviour
     IEnumerator BurialRoutine()
     {
         BurialAnimator.SetTrigger("Bury");
-        EndInteraction();
         IsBurying = true;
 
         yield return new WaitForSeconds(3.5f);
@@ -123,11 +121,5 @@ public class UnburiedProject : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         GraveyardLoader.Instance.AddGrave(Data, ProjectPath, transform.position, transform.rotation);
         Destroy(gameObject);
-
-    }
-
-    void EndInteraction()
-    {
-        GameState.Instance.SetState(GameState.State.World);
     }
 }

@@ -12,7 +12,7 @@ public class TextDialog : DialogPanelBase
 
     public static TextDialog Instance;
 
-    protected override void PostAwake()
+    void Awake()
     {
         Instance = this;
     }
