@@ -27,9 +27,11 @@ public class GameState : MonoBehaviour
         {
             case State.World:
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 break;
             case State.UI:
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
         }
     }
