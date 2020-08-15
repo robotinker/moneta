@@ -25,5 +25,18 @@ public class PlayerInteraction : MonoBehaviour
             }
             Debug.DrawLine(transform.position, transform.position + transform.forward * CastDistance, Color.green);
         }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, CastDistance, TargetLayers))
+            {
+                var interaction = hit.collider.GetComponent<SecondaryInteraction>();
+                if (interaction)
+                {
+                    interaction.Activate();
+                }
+            }
+            Debug.DrawLine(transform.position, transform.position + transform.forward * CastDistance, Color.red);
+        }
     }
 }

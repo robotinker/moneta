@@ -26,8 +26,13 @@ public class UnburiedProject : MonoBehaviour
 
         Grave.Init(Path.GetFileName(path), string.Format("({0} - ???)", Directory.GetCreationTime(ProjectPath).ToString("MMM, yyyy")), "");
 
+        ResetPhotos();
+    }
+
+    public void ResetPhotos()
+    {
         ClearPhotos();
-        LoadPhotos(path);
+        LoadPhotos(ProjectPath);
     }
 
     void ClearPhotos()
