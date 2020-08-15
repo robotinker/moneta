@@ -28,6 +28,10 @@ public class Utils
         imagePaths.AddRange(Directory.EnumerateFiles(path, "*.jpg", SearchOption.AllDirectories));
         imagePaths.AddRange(Directory.EnumerateFiles(path, "*.jpeg", SearchOption.AllDirectories));
         imagePaths.RemoveAll(s => Path.GetFileName(s).StartsWith("."));
+        imagePaths.RemoveAll(s => s.Contains("Editor"));
+        imagePaths.RemoveAll(s => s.Contains("Example"));
+
+        Debug.Log(string.Join("\n", imagePaths));
 
         var backupPaths = new List<string>();
 
@@ -51,7 +55,7 @@ public class Utils
             {
                 texture.LoadImage(fileData);
             }
-            catch (Exception e)
+            catch
             {
                 failed = true;
                 while (backupPaths.Count > 0 && failed)
