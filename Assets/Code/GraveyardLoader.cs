@@ -100,7 +100,7 @@ public class GraveyardLoader : MonoBehaviour
 
     IEnumerator Teardown()
     {
-        Utils.DestroyChildrenWithComponent<Grave>(GraveParent);
+        Utils.DestroyChildrenWithComponent<BuriedProject>(GraveParent);
         Utils.DestroyChildrenWithComponent<UnburiedProject>(GraveParent);
         yield return new WaitForEndOfFrame();
     }
@@ -113,7 +113,7 @@ public class GraveyardLoader : MonoBehaviour
         newGrave.transform.rotation = rotation;
         newGrave.transform.SetParent(GraveParent);
 
-        newGrave.GetComponent<Grave>().Init(data.Title, data.Date, data.Description);
+        newGrave.GetComponentInChildren<Grave>().Init(data.Title, data.Date, data.Description);
         newGrave.GetComponent<BuriedProject>().Init(path, data.FlowerColor, data.Photo);
     }
 

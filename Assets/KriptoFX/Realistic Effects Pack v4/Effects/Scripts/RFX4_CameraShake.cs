@@ -25,7 +25,7 @@ public class RFX4_CameraShake : MonoBehaviour
     {
         if (isPlaying && IsEnabled) {
             isPlaying = false;
-            PlayShake();
+            //PlayShake();
         }
     }
 

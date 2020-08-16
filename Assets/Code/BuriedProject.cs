@@ -8,12 +8,13 @@ public class BuriedProject : MonoBehaviour
 {
     public GameObject PhotoPrefab;
     public Transform PhotoParent;
+    public Transform TombstoneParent;
     public Animator FlowerAnimator;
     public MeshRenderer FlowerRenderer;
     public AudioSource MusicEmitter;
     public AudioSource SFXEmitter;
-    public ParticleSystem ParticleSystem;
-    ParticleSystemRenderer PSRenderer;
+    public ParticleSystem GhostParticleSystem;
+    ParticleSystemRenderer GhostRenderer;
 
     List<AudioClip> Music = new List<AudioClip>();
     List<AudioClip> SFX = new List<AudioClip>();
@@ -66,7 +67,7 @@ public class BuriedProject : MonoBehaviour
             }
         }
 
-        PSRenderer = ParticleSystem.GetComponent<ParticleSystemRenderer>();
+        GhostRenderer = GhostParticleSystem.GetComponent<ParticleSystemRenderer>();
 
         if (FlowerRenderer != null)
         {
@@ -145,16 +146,16 @@ public class BuriedProject : MonoBehaviour
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 5f));
 
-            if (Images.Count > 0 && !ParticleSystem.isPlaying)
+            if (Images.Count > 0 && !GhostParticleSystem.isPlaying)
             {
                 var texture = Utils.GetRandom(Images);
-                PSRenderer.material.mainTexture = texture;
+                GhostRenderer.material.mainTexture = texture;
                 var maxDimension = Mathf.Max(texture.width, texture.height);
-                var mainModule = ParticleSystem.main;
+                var mainModule = GhostParticleSystem.main;
                 mainModule.startSizeX = texture.width / (float)maxDimension;
                 mainModule.startSizeY = texture.height / (float)maxDimension;
                 mainModule.startSizeZ = texture.height / (float)maxDimension;
-                ParticleSystem.Play();
+                GhostParticleSystem.Play();
             }
 
             if (SFX.Count > 0 && !SFXEmitter.isPlaying)

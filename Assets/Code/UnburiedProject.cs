@@ -9,7 +9,7 @@ using UnityEngine;
 public class UnburiedProject : MonoBehaviour
 {
     public Transform BurialEffectLocation;
-    public GameObject BurialEffectPrefab;
+    public List<GameObject> BurialEffects;
     public GameObject PhotoPrefab;
     public Grave Grave;
 
@@ -117,7 +117,11 @@ public class UnburiedProject : MonoBehaviour
         IsBurying = true;
 
         yield return new WaitForSeconds(3.5f);
-        Instantiate(BurialEffectPrefab, BurialEffectLocation.position, BurialEffectLocation.rotation);
+
+        foreach (var effect in BurialEffects)
+        {
+            Instantiate(effect, BurialEffectLocation.position, BurialEffectLocation.rotation);
+        }
         yield return new WaitForSeconds(0.5f);
         GraveyardLoader.Instance.AddGrave(Data, ProjectPath, transform.position, transform.rotation);
         Destroy(gameObject);
