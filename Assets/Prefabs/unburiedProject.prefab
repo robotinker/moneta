@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 1645368976013995085}
   - component: {fileID: 5739040073292871106}
   - component: {fileID: 460773827}
+  - component: {fileID: 4725432957652352780}
   m_Layer: 0
   m_Name: unburiedProject
   m_TagString: Untagged
@@ -521,7 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BurialEffectLocation: {fileID: 4085350064805208078}
-  BurialEffectPrefab: {fileID: 1674913850350456349, guid: f2d5e8b40e19ef54ab7aa58f4863f9f8,
+  BurialEffectPrefab: {fileID: 1919843589960360, guid: 961f9f66d46891b498e4129d7b89b9f8,
     type: 3}
   PhotoPrefab: {fileID: 6743654870398218665, guid: 4b5d8cd7361dce4419bd5215e34157f1,
     type: 3}
@@ -547,6 +548,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4725432957652352780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645368976014094445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76298f122ef6c34ca17a53889e7e404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1114615031475736901}
 --- !u!1 &2222963266917018749
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,13 +923,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6895595068098072441}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.163, y: 0.163, z: 0.914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1645368976013995085}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &7684732124946446939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,8 +1191,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5054468, y: 0.8300001, z: 6.6023507}
-  m_Center: {x: -0.38336214, y: 0.41500005, z: 2.4974854}
+  m_Size: {x: 1, y: 1.6426344, z: 2.8500118}
+  m_Center: {x: 0.00999999, y: 0.8539462, z: 1.1655273}
 --- !u!114 &83005482
 MonoBehaviour:
   m_ObjectHideFlags: 0
