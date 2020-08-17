@@ -5292,12 +5292,26 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: SetParentIndex
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.016666668
     functionName: CreatePrefab
     data: 
     objectReferenceParameter: {fileID: 1748139164946814, guid: 4f14e37b24a0f9c41a81220f59ae87f6,
       type: 3}
     floatParameter: 0
     intParameter: 0
+    messageOptions: 0
+  - time: 3.25
+    functionName: SetParentIndex
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 3.2666667
     functionName: CreatePrefab

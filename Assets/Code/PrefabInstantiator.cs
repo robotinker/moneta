@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PrefabInstantiator : MonoBehaviour
 {
-    public Transform Parent;
+    public List<Transform> Parents;
+
+    int ParentIndex;
 
     public void CreatePrefab(GameObject prefab)
     {
-        Instantiate(prefab, Parent);
+        Utils.CreateAsAlignedChild(prefab, Parents[ParentIndex]);
     }
 
-    public void SetPrefabParent(Transform parent)
+    public void SetParentIndex(int i)
     {
-        Parent = parent;
+        ParentIndex = Mathf.Clamp(i, 0, Parents.Count - 1);
     }
 }
