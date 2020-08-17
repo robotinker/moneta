@@ -340,5 +340,7 @@ public class Project : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         IsBuried = true;
+        TombstonePosition.GetComponentInChildren<Grave>().Init(Data.Title, Data.Date, Data.Description);
+
     }
 }
