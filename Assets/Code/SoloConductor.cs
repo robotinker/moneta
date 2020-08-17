@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class SoloConductor : MonoBehaviour
 {
-    BuriedProject PreviousSolo;
+    Project PreviousSolo;
 
     private void Awake()
     {
-        BuriedProject.OnStartSolo += HandleSoloStarted;
+        Project.OnStartSolo += HandleSoloStarted;
     }
 
     private void OnDestroy()
     {
         StopAllCoroutines();
-        BuriedProject.OnStartSolo -= HandleSoloStarted;
+        Project.OnStartSolo -= HandleSoloStarted;
     }
 
-    void HandleSoloStarted(BuriedProject target)
+    void HandleSoloStarted(Project target)
     {
         PreviousSolo = target;
     }
@@ -32,16 +32,16 @@ public class SoloConductor : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(15f, 30f));
+            yield return new WaitForSeconds(Random.Range(15f, 30f));
             if (GameState.Instance.CurrentState == GameState.State.World
-                && (PreviousSolo == null || !PreviousSolo.IsPlaying))
+                && (PreviousSolo == null || !PreviousSolo.IsPlayingSolo))
             {
-                var newSolo = Utils.GetRandom(GraveyardLoader.Instance.GraveParent.GetComponentsInChildren<BuriedProject>().ToList());
-                newSolo.TogglePlaying();
-                yield return new WaitForSeconds(UnityEngine.Random.Range(30f, 40f));
-                if (newSolo == PreviousSolo && newSolo.IsPlaying)
+                var newSolo = Utils.GetRandom(GraveyardLoader.Instance.GraveParent.GetComponentsInChildren<Project>().ToList());
+                //newSolo.TogglePlaying();
+                yield return new WaitForSeconds(Random.Range(30f, 40f));
+                if (newSolo == PreviousSolo && newSolo.IsPlayingSolo)
                 {
-                    newSolo.TogglePlaying();
+                    //newSolo.TogglePlaying();
                 }
             }
         }

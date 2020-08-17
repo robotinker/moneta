@@ -10,4 +10,9 @@ public class PrefabInstantiator : MonoBehaviour
     {
         Instantiate(prefab, Parent);
     }
+
+    public void SetPrefabParent(Transform parent)
+    {
+        Parent = parent;
+    }
 }

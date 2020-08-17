@@ -8,10 +8,11 @@ using UnityEngine;
 public class GraveyardLoader : MonoBehaviour
 {
     public GameObject GravePrefab;
-    public GameObject UnburiedProjectPrefab;
     public Transform GraveParent;
 
     public List<Color> FlowerColors;
+
+    public List<GameObject> Tombstones;
 
     public static GraveyardLoader Instance;
 
@@ -80,7 +81,8 @@ public class GraveyardLoader : MonoBehaviour
                 try
                 {
                     var data = (BonesData)JsonUtility.FromJson(File.ReadAllText(bonesFiles[0]), typeof(BonesData));
-                    AddGrave(data, path, preset.position, preset.rotation);
+                    var newGrave = Utils.CreateAsAlignedChild(GravePrefab, preset);
+                    newGrave.GetComponent<Project>().Init(path, data);
                 }
                 catch (Exception e)
                 {
@@ -89,10 +91,8 @@ public class GraveyardLoader : MonoBehaviour
             }
             else if (i < gravePresetCount)
             {
-                var newBurialPlot = Instantiate(UnburiedProjectPrefab, GraveParent);
-                newBurialPlot.transform.position = preset.position;
-                newBurialPlot.transform.rotation = preset.rotation;
-                newBurialPlot.GetComponent<UnburiedProject>().Init(path);
+                var newGrave = Utils.CreateAsAlignedChild(GravePrefab, preset);
+                newGrave.GetComponent<Project>().Init(path);
             }
             i++;
         }
@@ -100,21 +100,8 @@ public class GraveyardLoader : MonoBehaviour
 
     IEnumerator Teardown()
     {
-        Utils.DestroyChildrenWithComponent<BuriedProject>(GraveParent);
-        Utils.DestroyChildrenWithComponent<UnburiedProject>(GraveParent);
+        Utils.DestroyChildrenWithComponent<Project>(GraveParent);
         yield return new WaitForEndOfFrame();
-    }
-
-    public void AddGrave(BonesData data, string path, Vector3 position, Quaternion rotation)
-    {
-        var newGrave = Instantiate(GravePrefab);
-
-        newGrave.transform.position = position;
-        newGrave.transform.rotation = rotation;
-        newGrave.transform.SetParent(GraveParent);
-
-        newGrave.GetComponentInChildren<Grave>().Init(data.Title, data.Date, data.Description);
-        newGrave.GetComponent<BuriedProject>().Init(path, data.FlowerColor, data.Photo);
     }
 
     public void StartClearBonesInteraction()

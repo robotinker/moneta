@@ -21,6 +21,31 @@ public class Utils
         return output;
     }
 
+    public static GameObject CreateAsAlignedChild(GameObject prefab, Transform parent)
+    {
+        var output = GameObject.Instantiate(prefab, parent.position, parent.rotation);
+        output.transform.SetParent(parent);
+        output.transform.localScale = Vector3.one;
+        return output;
+    }
+
+    public static bool TryLoadTextureFromPathToPhoto(string path, Photo photo)
+    {
+        var texture = new Texture2D(2, 2);
+        try
+        {
+            var fileData = File.ReadAllBytes(path);
+            texture.LoadImage(fileData);
+            photo.Init(texture);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return false;
+        }
+    }
+
     public static List<Texture2D> GetTextures(string path, int max)
     {
         var output = new List<Texture2D>();
