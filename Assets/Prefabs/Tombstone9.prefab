@@ -82,6 +82,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.138
       objectReference: {fileID: 0}
+    - target: {fileID: 3294941298216941284, guid: 60033816fff1ae74582a4d37e3f7811f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.074
+      objectReference: {fileID: 0}
     - target: {fileID: 4301669447360916858, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_textInfo.characterCount

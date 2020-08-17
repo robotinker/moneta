@@ -58,9 +58,11 @@ public class Utils
         imagePaths.AddRange(Directory.EnumerateFiles(path, "*.jpg", SearchOption.AllDirectories));
         imagePaths.AddRange(Directory.EnumerateFiles(path, "*.jpeg", SearchOption.AllDirectories));
         imagePaths.RemoveAll(s => Path.GetFileName(s).StartsWith("."));
-        imagePaths.RemoveAll(s => s.Contains("Editor"));
-        imagePaths.RemoveAll(s => s.Contains("Example"));
-
+        foreach (var kickPhrase in new []{ "Editor", "Example", "Library"})
+        {
+            imagePaths.RemoveAll(s => s.Contains(kickPhrase));
+        }
+ 
         Debug.Log(string.Join("\n", imagePaths));
 
         var backupPaths = new List<string>();
