@@ -100,7 +100,7 @@ public class Project : MonoBehaviour
 
     void PreloadAssets(string path)
     {
-        Images = Utils.GetTextures(path, 30);
+        Images = Utils.GetTextures(path, 15);
         Debug.LogFormat("Found {0} textures for {1}", Images.Count, Path.GetFileName(path));
 
         Utils.GetAudioClips(path, 15, x =>
