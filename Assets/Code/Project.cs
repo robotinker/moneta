@@ -66,7 +66,7 @@ public class Project : MonoBehaviour
 
         if (IsBuried)
         {
-            SetupBuriedProject(data);
+            SetupBuriedProject(path, data);
         }
         else
         {
@@ -124,7 +124,7 @@ public class Project : MonoBehaviour
     {
         ProjectPath = path;
 
-        SetupTombstone(new BonesData
+        SetupTombstone(path, new BonesData
         {
             Title = Path.GetFileName(path),
             Description = "",
@@ -133,19 +133,19 @@ public class Project : MonoBehaviour
         ResetPhotos();
     }
 
-    void SetupBuriedProject(BonesData data)
+    void SetupBuriedProject(string path, BonesData data)
     {
         IsBuried = true;
-        SetupTombstone(data);
+        SetupTombstone(path, data);
         ClearPhotos();
         SetupBuriedProjectPhoto(data);
         SetupBuriedProjectOfferings(data);
     }
 
-    void SetupTombstone(BonesData data)
+    void SetupTombstone(string path, BonesData data)
     {
         Utils.DestroyChildrenWithComponent<Grave>(TombstonePosition);
-        var newTombstone = Utils.CreateAsAlignedChild(Utils.GetRandom(GraveyardLoader.Instance.Tombstones), TombstonePosition);
+        var newTombstone = Utils.CreateAsAlignedChild(Utils.GetRandom(GraveyardLoader.Instance.Tombstones, path.GetHashCode()), TombstonePosition);
         newTombstone.GetComponentInChildren<Grave>().Init(data.Title, data.Date, data.Description);
     }
 

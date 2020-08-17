@@ -8,8 +8,13 @@ using UnityEngine.Networking;
 
 public class Utils
 {
-    public static T GetRandom<T>(List<T> list)
+    public static T GetRandom<T>(List<T> list, int seed = 0)
     {
+        if (seed > 0)
+        {
+            UnityEngine.Random.InitState(seed);
+        }
+
         return list[UnityEngine.Random.Range(0, list.Count)];
     }
 

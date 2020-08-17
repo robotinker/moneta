@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1523783909816989666, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_Name
-      value: Tombstone
+      value: Tombstone7
       objectReference: {fileID: 0}
     - target: {fileID: 1523783909817412546, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
@@ -85,17 +85,32 @@ PrefabInstance:
     - target: {fileID: 4701940457952015944, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9566
+      value: 0.9957
       objectReference: {fileID: 0}
     - target: {fileID: 4701940457952015944, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.29968405
+      value: 0.42145216
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701940457952015944, guid: 60033816fff1ae74582a4d37e3f7811f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0055
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701940457952015944, guid: 60033816fff1ae74582a4d37e3f7811f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.51739967
       objectReference: {fileID: 0}
     - target: {fileID: 5770843695152417433, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.598
+      value: 0.4436
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770843695152417433, guid: 60033816fff1ae74582a4d37e3f7811f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.47141707
       objectReference: {fileID: 0}
     - target: {fileID: 6525813769657768447, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
