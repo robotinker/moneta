@@ -10,12 +10,12 @@ PrefabInstance:
     - target: {fileID: 611734704403206030, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_margin.w
-      value: 2.3021917
+      value: 2.331516
       objectReference: {fileID: 0}
     - target: {fileID: 611734704403206030, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_fontSize
-      value: 0.7
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 611734704403206030, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 611734704403206030, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_margin.y
-      value: 2.2155488
+      value: 2.2253237
       objectReference: {fileID: 0}
     - target: {fileID: 611734704403206030, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
@@ -45,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 1910753572849278677, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_margin.w
-      value: 2.9422722
+      value: 2.896657
       objectReference: {fileID: 0}
     - target: {fileID: 1910753572849278677, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
@@ -55,12 +55,12 @@ PrefabInstance:
     - target: {fileID: 1910753572849278677, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1910753572849278677, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_margin.y
-      value: 1.8645732
+      value: 1.8808645
       objectReference: {fileID: 0}
     - target: {fileID: 1910753572849278677, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 5172552466594423187, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_Name
-      value: Tombstone
+      value: Tombstone3
       objectReference: {fileID: 0}
     - target: {fileID: 5310186643788973942, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
@@ -155,17 +155,17 @@ PrefabInstance:
     - target: {fileID: 7592947916305578763, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_margin.w
-      value: 2.880576
+      value: 2.8675427
       objectReference: {fileID: 0}
     - target: {fileID: 7592947916305578763, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_fontSize
-      value: 0.45
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7592947916305578763, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7592947916305578763, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
@@ -187,6 +187,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.126
       objectReference: {fileID: 0}
+    - target: {fileID: 7969628112719995839, guid: 688b861be6db20c4f9d932acbd35ecdb,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 19.79
+      objectReference: {fileID: 0}
     - target: {fileID: 8169220229997454326, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}
       propertyPath: m_Mesh
@@ -196,6 +201,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.146
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931667614251007501, guid: 688b861be6db20c4f9d932acbd35ecdb,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 19.95
       objectReference: {fileID: 0}
     - target: {fileID: 9175226432208150677, guid: 688b861be6db20c4f9d932acbd35ecdb,
         type: 3}

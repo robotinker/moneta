@@ -82,6 +82,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.138
       objectReference: {fileID: 0}
+    - target: {fileID: 2962981712025102460, guid: 60033816fff1ae74582a4d37e3f7811f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 19.95
+      objectReference: {fileID: 0}
     - target: {fileID: 3294941298216941284, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -115,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 4301669447360916858, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_margin.w
-      value: 2.8861065
+      value: 2.9044547
       objectReference: {fileID: 0}
     - target: {fileID: 4301669447360916858, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
@@ -125,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 4301669447360916858, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_margin.y
-      value: 1.9710997
+      value: 2.0004568
       objectReference: {fileID: 0}
     - target: {fileID: 4356325540388599246, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
@@ -170,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 5217794228159760548, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5217794228159760548, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
@@ -180,12 +185,17 @@ PrefabInstance:
     - target: {fileID: 5217794228159760548, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_margin.w
-      value: 2.9242616
+      value: 2.9352705
       objectReference: {fileID: 0}
     - target: {fileID: 5217794228159760548, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_fontSize
       value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217794228159760548, guid: 60033816fff1ae74582a4d37e3f7811f,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 1.6299437
       objectReference: {fileID: 0}
     - target: {fileID: 5770843695152417433, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
@@ -235,12 +245,12 @@ PrefabInstance:
     - target: {fileID: 6525813769657768447, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_margin.y
-      value: 1.6457338
+      value: 1.6347249
       objectReference: {fileID: 0}
     - target: {fileID: 6525813769657768447, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}
       propertyPath: m_fontSize
-      value: 0.95
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 6525813769657768447, guid: 60033816fff1ae74582a4d37e3f7811f,
         type: 3}

@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.399, y: 0.53}
-  m_SizeDelta: {x: 20, y: 5}
+  m_AnchoredPosition: {x: -0.367, y: 0.339}
+  m_SizeDelta: {x: 19.8, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4766275223291597206
 MeshRenderer:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 0.4
+  m_fontSize: 0.5
   m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 9.337641, y: 1.6720046, z: 10.144116, w: 3.2385707}
+  m_margin: {x: 9.337641, y: 1.6571283, z: 10.144116, w: 3.193942}
   m_textInfo:
     textComponent: {fileID: 5446551715124295575}
     characterCount: 24
@@ -187,7 +187,7 @@ MonoBehaviour:
     spaceCount: 4
     wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -552,7 +552,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 0.6
+  m_fontSize: 0.65
   m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 9.353817, y: 1.4787354, z: 10.159748, w: 3.3253407}
+  m_margin: {x: 9.353817, y: 1.5010499, z: 10.159748, w: 3.2658358}
   m_textInfo:
     textComponent: {fileID: 4057114666425766473}
     characterCount: 29
@@ -598,7 +598,7 @@ MonoBehaviour:
     spaceCount: 3
     wordCount: 4
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -675,7 +675,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6836b183cf0b2df4d80cdb873fe67b10, type: 2}
+  - {fileID: 2100000, guid: a1685e214bb9c1441b097cb1bbc900ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 7278099689134715183}
   - component: {fileID: 7802381530105399679}
   m_Layer: 0
-  m_Name: Tombstone
+  m_Name: Tombstone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
