@@ -40,7 +40,9 @@ public class GraveyardLoader : MonoBehaviour
 
     public void ChooseGraveyard()
     {
+        GameState.Instance.SetState(GameState.State.UI, this);
         var paths = StandaloneFileBrowser.OpenFolderPanel("Choose An Archive", "", false);
+        GameState.Instance.SetState(GameState.State.World, this);
         if (paths.Length > 0 && (paths[0] != GraveyardPath))
         {
             var directoryPath = paths[0];
@@ -106,8 +108,6 @@ public class GraveyardLoader : MonoBehaviour
 
     public void StartClearBonesInteraction()
     {
-        GameState.Instance.SetState(GameState.State.UI);
-
         ConfirmationDialog.Instance.Init("Dig up all graves?", DestroyAllBonesFiles, null);
     }
 

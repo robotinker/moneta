@@ -307,7 +307,9 @@ public class Project : MonoBehaviour
         ConfirmationDialog.Instance.Init("Is there a photo you'd like to keep?",
             () =>
             {
+                GameState.Instance.SetState(GameState.State.UI, this);
                 var paths = StandaloneFileBrowser.OpenFilePanel("Choose A Photo", ProjectPath, new[] { new ExtensionFilter("images", "jpg", "jpeg", "png") }, false);
+                GameState.Instance.SetState(GameState.State.World, this);
                 if (paths.Length > 0)
                 {
                     SetPostBurialPhoto(paths[0]);

@@ -14,16 +14,39 @@ public class GameState : MonoBehaviour
 
     public static GameState Instance;
 
+    List<object> UIVotes = new List<object>();
+
     private void Awake()
     {
         Instance = this;
     }
 
-    public void SetState(State newState)
+    public void SetState(State newState, object owner)
     {
-        CurrentState = newState;
+        if (newState == State.UI)
+        {
+            if (!UIVotes.Contains(owner))
+            {
+                UIVotes.Add(owner);
+            }
+        }
+        else
+        {
+            UIVotes.Remove(owner);
+        }
+        UpdateState();
+    }
 
-        switch (newState)
+    public void ClearState(object owner)
+    {
+        UIVotes.Remove(owner);
+        UpdateState();
+    }
+
+    void UpdateState()
+    {
+        CurrentState = UIVotes.Count > 0 ? State.UI : State.World;
+        switch (CurrentState)
         {
             case State.World:
                 Cursor.lockState = CursorLockMode.Locked;

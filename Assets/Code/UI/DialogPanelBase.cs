@@ -14,7 +14,7 @@ public class DialogPanelBase : MonoBehaviour
     public void Show()
     {
         Panel.SetActive(true);
-        GameState.Instance.SetState(GameState.State.UI);
+        GameState.Instance.SetState(GameState.State.UI, this);
         PostShow();
     }
 
@@ -26,7 +26,7 @@ public class DialogPanelBase : MonoBehaviour
     public void Hide()
     {
         PreHide();
-        GameState.Instance.SetState(GameState.State.World);
+        GameState.Instance.SetState(GameState.State.World, this);
         Panel.SetActive(false);
     }
 
