@@ -338,9 +338,11 @@ public class Project : MonoBehaviour
     {
         Animator.SetBool("IsBuried", true);
         IsBurying = true;
+        SetupBuriedProjectPhoto(Data);
 
         yield return new WaitForSeconds(4f);
 
+        SetupBuriedProjectPhoto(Data);
         IsBuried = true;
         TombstonePosition.GetComponentInChildren<Grave>().Init(Data.Title, Data.Date, Data.Description);
 

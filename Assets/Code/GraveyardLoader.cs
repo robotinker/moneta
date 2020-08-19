@@ -29,7 +29,11 @@ public class GraveyardLoader : MonoBehaviour
         yield return Teardown();
         if (PlayerPrefs.HasKey(GraveyardPathKey))
         {
+            LoadingMessage.Instance.Show();
+            yield return null;
+            yield return null;
             Setup(PlayerPrefs.GetString(GraveyardPathKey));
+            LoadingMessage.Instance.Hide();
         }
     }
 
