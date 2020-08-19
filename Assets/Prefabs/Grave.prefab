@@ -263,7 +263,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -324,7 +324,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 1.4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -440,7 +440,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -757,7 +757,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     maxNumParticles: 1000
-    size3D: 1
+    size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
@@ -2799,11 +2799,11 @@ ParticleSystem:
     inWorldSpace: 0
     multiplyDragByParticleSize: 0
     multiplyDragByParticleVelocity: 0
-    dampen: 0.1
+    dampen: 0.15
     drag:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.15
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6096,7 +6096,7 @@ PrefabInstance:
     - target: {fileID: 4057114666425766473, guid: 17fb2f549d8d357468e086e086eb9b8b,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4057114666425766473, guid: 17fb2f549d8d357468e086e086eb9b8b,
         type: 3}
@@ -6121,7 +6121,7 @@ PrefabInstance:
     - target: {fileID: 5446551715124295575, guid: 17fb2f549d8d357468e086e086eb9b8b,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5446551715124295575, guid: 17fb2f549d8d357468e086e086eb9b8b,
         type: 3}
@@ -6283,11 +6283,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6841136143091810423}
     m_Modifications:
+    - target: {fileID: 6553294279325360148, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279325360152, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279325360154, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6553294279325360156, guid: 9524dc863088d80438b3bec1875e2533,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: d41f89e8aedd15a458dbdd9afb5b8ac3, type: 2}
+    - target: {fileID: 6553294279325360156, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553294279325360158, guid: 9524dc863088d80438b3bec1875e2533,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6553294279327563478, guid: 9524dc863088d80438b3bec1875e2533,
         type: 3}
       propertyPath: m_Name
@@ -7279,7 +7304,7 @@ PrefabInstance:
     - target: {fileID: 7679885703175944252, guid: 75b4b28c9ac04a54385de9ad2fa50427,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.051
+      value: 0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75b4b28c9ac04a54385de9ad2fa50427, type: 3}
