@@ -10,7 +10,7 @@ public class GraveyardLoader : MonoBehaviour
     public GameObject GravePrefab;
     public Transform GraveParent;
 
-    public List<Color> FlowerColors;
+    public List<GameObject> Flowers;
 
     public List<GameObject> Tombstones;
 

@@ -14,8 +14,7 @@ public class Project : MonoBehaviour
     public GameObject PhotoPrefab;
     public Transform PostBurialPhotoPosition;
 
-    public MeshRenderer FlowerRenderer;
-    public Animator FlowerAnimator;
+    public Transform OfferingPosition;
 
     public AudioSource MusicEmitter;
     public AudioSource SFXEmitter;
@@ -64,6 +63,7 @@ public class Project : MonoBehaviour
 
         PreloadAssets(path);
 
+        Utils.DestroyChildrenWithComponent<Offering>(OfferingPosition);
         if (IsBuried)
         {
             SetupBuriedProject(path, data);
@@ -139,7 +139,6 @@ public class Project : MonoBehaviour
         SetupTombstone(path, data);
         ClearPhotos();
         SetupBuriedProjectPhoto(data);
-        SetupBuriedProjectOfferings(data);
     }
 
     void SetupTombstone(string path, BonesData data)
@@ -156,14 +155,6 @@ public class Project : MonoBehaviour
 
         var newPhoto = Utils.CreateAsAlignedChild(PhotoPrefab, PostBurialPhotoPosition);
         Utils.TryLoadTextureFromPathToPhoto(data.Photo, newPhoto.GetComponent<Photo>());
-    }
-
-    void SetupBuriedProjectOfferings(BonesData data)
-    {
-        if (FlowerRenderer != null)
-        {
-            FlowerRenderer.materials[1].color = data.FlowerColor;
-        }
     }
 
     void HandleSoloStarted(Project target)
@@ -203,7 +194,17 @@ public class Project : MonoBehaviour
             IsPlayingSolo = true;
             OnStartSolo?.Invoke(this);
         }
-        FlowerAnimator.SetBool("Playing", IsPlayingSolo);
+
+        var offering = OfferingPosition.GetComponentInChildren<Offering>();
+        if (offering != null)
+        {
+            offering.Toggle();
+        }
+        else if (IsPlayingSolo)
+        {
+            var newOffering = Utils.CreateAsAlignedChild(Utils.GetRandom(GraveyardLoader.Instance.Flowers), OfferingPosition);
+            newOffering.GetComponentInChildren<Offering>().Toggle();
+        }
     }
 
     IEnumerator FadeOutMusic()
@@ -303,7 +304,6 @@ public class Project : MonoBehaviour
     void SetDescription(string description)
     {
         Data.Description = description;
-        Data.FlowerColor = Utils.GetRandom(GraveyardLoader.Instance.FlowerColors);
         ConfirmationDialog.Instance.Init("Is there a photo you'd like to keep?",
             () =>
             {

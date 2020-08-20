@@ -43911,7 +43911,7 @@ MonoBehaviour:
   hdr: 0
   sepBlurSpread: 2.87
   quality: 1
-  bloomIntensity: 1.5
+  bloomIntensity: 2
   bloomThreshold: 0.58
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 4
@@ -73325,12 +73325,15 @@ MonoBehaviour:
   GravePrefab: {fileID: 6841136143091981399, guid: 16c34508631efa64ab30bb9c98355ddb,
     type: 3}
   GraveParent: {fileID: 203325247}
-  FlowerColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.6833334, b: 1, a: 1}
-  - {r: 1, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.6117803, b: 0, a: 1}
-  - {r: 0.9315582, g: 0.45499998, b: 1, a: 1}
+  Flowers:
+  - {fileID: 104560, guid: 665a625bee8f1cd47954996d100d0024, type: 3}
+  - {fileID: 166026, guid: 67d06854f17ca18468c65b9f81421207, type: 3}
+  - {fileID: 196360, guid: f284d1644b0d38543a885f747091c7b1, type: 3}
+  - {fileID: 102932, guid: 669d91a023aaa6e43a40ce470d0cc03e, type: 3}
+  - {fileID: 146114, guid: c7fbe8636013cab4bb9ef9832416cc4b, type: 3}
+  - {fileID: 172516, guid: 9a7f994f4f1aeaa48aba13a523159ac7, type: 3}
+  - {fileID: 129100, guid: f28b03d0c78691c46b6b38a0b71415b9, type: 3}
+  - {fileID: 107282, guid: 298d1ef1ac6d608419471f51cd58df2f, type: 3}
   Tombstones:
   - {fileID: 7278099689135074575, guid: 17fb2f549d8d357468e086e086eb9b8b, type: 3}
   - {fileID: 5172552466594423187, guid: 688b861be6db20c4f9d932acbd35ecdb, type: 3}
